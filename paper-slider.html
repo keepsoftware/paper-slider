@@ -95,7 +95,7 @@ Custom property | Description | Default
       /**
        * NOTE(keanulee): Though :host-context is not universally supported, some pages
        * still rely on paper-slider being flipped when dir="rtl" is set on body. For full
-       * compatibility, dir="rtl" must be explicitly set on paper-slider.
+       * compatability, dir="rtl" must be explicitly set on paper-slider.
        */
       :dir(rtl) #sliderContainer {
         -webkit-transform: scaleX(-1);
@@ -187,10 +187,16 @@ Custom property | Description | Default
         content: "";
         display: block;
         margin-left: -1px;
-        width: 2px;
+        /* width: 2px; */
         height: var(--calculated-paper-slider-height);
         border-radius: 50%;
         background-color: var(--paper-slider-markers-color, #000);
+        /* apt_DEBUG */
+        width: 6px;
+        position: relative;
+        height: 6px;
+        top: -2px;
+        left: -2px;
       }
 
       .slider-knob {
@@ -293,6 +299,14 @@ Custom property | Description | Default
 
         -webkit-transform: scale(0) translate(0);
         transform: scale(0) translate(0);
+
+        /* hack apt_DEBUG */
+        background-color: white;
+        border-radius: 50%;
+        width: 12px;
+        height: 12px;
+        margin-left: -6px;
+        margin-top: 0px;
       }
 
       .pin.expand > .slider-knob > .slider-knob-inner::after {
@@ -444,7 +458,8 @@ Custom property | Description | Default
         /**
          * If true, the knob is expanded
          */
-        expand: {type: Boolean, value: false, readOnly: true},
+        /* hack apt_DEBUG default: value = false */
+        expand: {type: Boolean, value: true, readOnly: true},
 
         /**
          * If true, a touchmove on the slider bar doesn't drag the slider thunb.
@@ -536,7 +551,8 @@ Custom property | Description | Default
 
       _resetKnob: function() {
         this.cancelDebouncer('expandKnob');
-        this._setExpand(false);
+        /* hack apt_DEBUG default: uncommented */
+        // this._setExpand(false);
       },
 
       _positionKnob: function(ratio) {
